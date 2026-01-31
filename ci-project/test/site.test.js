@@ -8,8 +8,16 @@ let page;
 
 beforeAll(async () => {
     browser = await puppeteer.launch({
-        headless: false
-    });
+  headless: "new",
+  args: [
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage",
+    "--disable-gpu",
+    "--single-process"
+  ]
+});
+
     page = await browser.newPage();
 
     const filePath = "file://" + path.resolve(__dirname, "../index.html");
